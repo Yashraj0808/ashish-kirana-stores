@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ashish Kirana And General Stores</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #e0eafc, #cfdef3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+    }
+
+    .blessing-text {
+      font-size: 1rem;
+      color: #444;
+    }
+
+    .blessing-text span{
+      margin: 10px;
+    }
+    h1 {
+      color: #2d2d2d;
+      margin-bottom: 10px;
+      font-size: 2.2rem;
+    }
+
+    .proprietor-marquee {
+      overflow: hidden;
+      white-space: nowrap;
+      box-sizing: border-box;
+      margin-bottom: 30px;
+    }
+
+    .proprietor-marquee h3 {
+      display: inline-block;
+      padding-left: 100%;
+      animation: marquee 12s linear infinite;
+      font-size: 0.95rem;
+      color: #333;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .btn {
+      text-decoration: none;
+      text-align: center;
+      padding: 15px 25px;
+      background-color: #4e9af1;
+      color: #fff;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .btn:hover {
+      background-color: #357cd4;
+      transform: scale(1.05);
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <p class="blessing-text">|Shree Balaji Prasanna||ॐ||Shree Swami Smarth|</p>
+    <h1>Ashish Kirana And General Stores</h1>
+    <div class="proprietor-marquee">
+      <h3>Proprietor: Narayan Ambadas Takle, Mobile No: +91 9860175411</h3>
+    </div>
+    <div class="button-group">
+      <a href="create-bill.html" class="btn" role="button">Create Bill</a>
+      <a href="products.html" class="btn" role="button">Products & Prices</a>
+      <a href="borrow-record.html" class="btn" role="button">Borrowing Records</a>
+    </div>
+  </div>
+</body>
+</html>

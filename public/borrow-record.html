@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Borrowing Records - Ashish Kirana</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom right, #f7f9fc, #dbe9f4);
+      padding: 20px;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #2d2d2d;
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    .input-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #333;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+
+    .btn {
+      background-color: #4e9af1;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 10px;
+      display: block;
+      width: 100%;
+    }
+
+    .btn:hover {
+      background-color: #357cd4;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 25px;
+      border-collapse: collapse;
+    }
+
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    .blessing-text {
+      font-size: 1rem;
+      text-align: center;
+      margin-bottom: 10px;
+      color: #444;
+    }
+
+    .blessing-text span {
+      margin: 0 10px;
+    }
+
+    .proprietor-marquee {
+      overflow: hidden;
+      white-space: nowrap;
+      box-sizing: border-box;
+      margin: 10px 0 30px;
+    }
+
+    .proprietor-marquee h3 {
+      display: inline-block;
+      padding-left: 100%;
+      animation: marquee 12s linear infinite;
+      font-size: 0.95rem;
+      color: #333;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+  </style>
+</head>
+<body>
+  <p class="blessing-text">
+    <span>|Shree Balaji Prasanna|</span>
+    <span>|ॐ|</span>
+    <span>|Shree Swami Smarth|</span>
+  </p>
+
+  <h1>Ashish Kirana And General Stores</h1>
+  
+  <div class="proprietor-marquee">
+    <h3>Proprietor: Narayan Ambadas Takle, Mobile No: +91 9860175411</h3>
+  </div>
+
+  <div class="container">
+    <h1>Borrowing Records</h1>
+
+    <div class="input-group">
+      <label for="customerName">Customer Name</label>
+      <input type="text" id="customerName" placeholder="Enter customer name"/>
+    </div>
+
+    <div class="input-group">
+      <label for="product">Product Borrowed</label>
+      <input type="text" id="product" placeholder="Enter product name"/>
+    </div>
+
+    <div class="input-group">
+      <label for="quantity">Quantity</label>
+      <input type="number" id="quantity" min="1" placeholder="Enter quantity"/>
+    </div>
+
+    <div class="input-group">
+      <label for="date">Date</label>
+      <input type="date" id="date"/>
+    </div>
+
+    <button class="btn" onclick="addRecord()">Add Record</button>
+
+    <table id="recordTable">
+      <thead>
+        <tr>
+          <th>Customer</th>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Records will be added here -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    function addRecord() {
+      const name = document.getElementById('customerName').value.trim();
+      const product = document.getElementById('product').value.trim();
+      const quantity = document.getElementById('quantity').value.trim();
+      const date = document.getElementById('date').value;
+
+      if (!name || !product || !quantity || !date) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      if (isNaN(quantity) || Number(quantity) <= 0) {
+        alert("Please enter a valid quantity greater than 0.");
+        return;
+      }
+
+      const table = document.querySelector('#recordTable tbody');
+      const row = document.createElement('tr');
+
+      row.innerHTML = `
+        <td>${name}</td>
+        <td>${product}</td>
+        <td>${quantity}</td>
+        <td>${date}</td>
+      `;
+
+      table.appendChild(row);
+
+      // Clear the input fields
+      document.getElementById('customerName').value = "";
+      document.getElementById('product').value = "";
+      document.getElementById('quantity').value = "";
+      document.getElementById('date').value = "";
+    }
+  </script>
+</body>
+</html>

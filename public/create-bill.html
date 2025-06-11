@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ashish Kirana- Bill Genrater</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #e0eafc, #cfdef3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      max-width: 600px;
+      width: 95%;
+      position: relative;
+    }
+
+    h1 {
+      color: #2d2d2d;
+      margin-bottom: 10px;
+      font-size: 2.2rem;
+    }
+
+    .proprietor-marquee {
+      overflow: hidden;
+      white-space: nowrap;
+      box-sizing: border-box;
+      margin-bottom: 30px;
+    }
+
+    .proprietor-marquee h3 {
+      display: inline-block;
+      padding-left: 100%;
+      animation: marquee 12s linear infinite;
+      font-size: 0.95rem;
+      color: #333;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input[type="text"], input[type="number"] {
+      width: 90%;
+      padding: 8px;
+      margin: 4px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .bill-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .bill-table th, .bill-table td {
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+
+    .bill-table input {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .add-row, .button-container {
+      margin-top: 20px;
+    }
+
+    .add-row button, .button-container button {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: #4e9af1;
+      color: white;
+      transition: 0.3s;
+    }
+
+    .add-row button:hover, .button-container button:hover {
+      background-color: #357cd4;
+      transform: scale(1.05);
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Ashish Kirana And General Stores</h1>
+    <div class="proprietor-marquee">
+      <h3>Proprietor: Narayan Ambadas Takle, Mobile No: +91 9860175411</h3>
+    </div>
+
+    <div>
+      <label for="customer">Customer Mobile Number or Name:</label>
+      <input type="text" id="customer" name="customer">
+    </div>
+
+    <div>
+      <label>Date and Time:</label>
+      <span id="datetime"></span>
+    </div>
+
+    <h2>Bill:</h2>
+    <table class="bill-table" id="billTable">
+      <thead>
+        <tr>
+          <th>Item No.</th>
+          <th>Product Name</th>
+          <th>Qnty</th>
+          <th>Rate</th>
+        </tr>
+      </thead>
+      <tbody id="billBody">
+        <tr>
+          <td>1</td>
+          <td><input type="text" class="product-name" onkeydown="checkEnter(event)"></td>
+          <td><input type="number" class="qnty" oninput="calculateTotal()" onkeydown="checkEnter(event)"></td>
+          <td><input type="number" class="rate" oninput="calculateTotal()" onkeydown="checkEnter(event)"></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td ><strong>Total</strong></td>
+          <td id="totalAmount">0</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <div class="add-row">
+      <button onclick="addRow()">➕ Add Item</button>
+    </div>
+
+    <div class="button-container">
+  <button onclick="validateAndPrint()">🖨️ Print Bill</button>
+  <button onclick="validateAndShare()">📤 Share Bill</button>
+  <button onclick="validateAndAddBorrowing()">➕ Add to Borrowing Record</button>
+</div>
+
+
+  <script>
+    function updateDateTime() {
+      const now = new Date();
+      document.getElementById('datetime').innerText = now.toLocaleString();
+    }
+
+    function checkEnter(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        addRow();
+      }
+    }
+
+    function addRow() {
+      const table = document.getElementById("billBody");
+      const rowCount = table.rows.length + 1;
+      const row = table.insertRow();
+
+      row.innerHTML = `
+        <td>${rowCount}</td>
+        <td><input type="text" class="product-name" onkeydown="checkEnter(event)"></td>
+        <td><input type="number" class="qnty" oninput="calculateTotal()" onkeydown="checkEnter(event)"></td>
+        <td><input type="number" class="rate" oninput="calculateTotal()" onkeydown="checkEnter(event)"></td>
+      `;
+    }
+
+    function calculateTotal() {
+      let total = 0;
+      const rows = document.querySelectorAll('#billBody tr');
+      rows.forEach(row => {
+        const qnty = row.querySelector('.qnty')?.value;
+        const rate = row.querySelector('.rate')?.value;
+        total += (parseFloat(qnty) || 0) * (parseFloat(rate) || 0);
+      });
+      document.getElementById('totalAmount').innerText = total.toFixed(2);
+    }
+
+    updateDateTime();
+    function isCustomerInfoValid() {
+  const customerInput = document.getElementById('customer').value.trim();
+  if (customerInput === '') {
+    alert("Please enter customer name or mobile number before proceeding.");
+    return false;
+  }
+  return true;
+}
+
+function validateAndPrint() {
+  if (isCustomerInfoValid()) {
+    window.print();
+  }
+}
+
+function validateAndShare() {
+  if (isCustomerInfoValid()) {
+    // You can later replace this with WhatsApp or email sharing logic
+    alert("Sharing the bill... (Feature coming soon)");
+  }
+}
+
+function validateAndAddBorrowing() {
+  if (isCustomerInfoValid()) {
+    // Later: Store to borrowing record logic
+    alert("Adding to borrowing record... (Feature coming soon)");
+  }
+}
+
+  </script>
+</body>
+</html>
