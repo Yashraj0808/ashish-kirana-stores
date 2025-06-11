@@ -19,22 +19,24 @@
 
     .container {
       background-color: #ffffff;
-      padding: 40px;
+      padding: 40px 20px;
       border-radius: 16px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
       text-align: center;
       max-width: 500px;
-      width: 90%;
+      width: 95%;
     }
 
     .blessing-text {
       font-size: 1rem;
       color: #444;
+      margin-bottom: 10px;
     }
 
-    .blessing-text span{
+    .blessing-text span {
       margin: 10px;
     }
+
     h1 {
       color: #2d2d2d;
       margin-bottom: 10px;
@@ -45,7 +47,7 @@
       overflow: hidden;
       white-space: nowrap;
       box-sizing: border-box;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
 
     .proprietor-marquee h3 {
@@ -88,20 +90,100 @@
     .btn:active {
       transform: scale(0.98);
     }
+
+    .time-date {
+      font-size: 1rem;
+      color: #444;
+      margin: 15px 0;
+    }
+
+    .language-switch {
+      margin-top: 15px;
+    }
+
+    .language-switch button {
+      padding: 8px 20px;
+      background-color: #4e9af1;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .language-switch button:hover {
+      background-color: #357cd4;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      .btn {
+        font-size: 1rem;
+      }
+
+      .proprietor-marquee h3 {
+        font-size: 0.85rem;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <p class="blessing-text">|Shree Balaji Prasanna||ॐ||Shree Swami Smarth|</p>
-    <h1>Ashish Kirana And General Stores</h1>
+    <p class="blessing-text" id="blessingText">|Shree Balaji Prasanna||ॐ||Shree Swami Smarth|</p>
+    <h1 id="mainHeading">Ashish Kirana And General Stores</h1>
+
     <div class="proprietor-marquee">
-      <h3>Proprietor: Narayan Ambadas Takle, Mobile No: +91 9860175411</h3>
+      <h3 id="proprietorInfo">Proprietor: Narayan Ambadas Takle, Mobile No: +91 9860175411</h3>
     </div>
+
+    <div class="time-date" id="dateTime"></div>
+
     <div class="button-group">
-      <a href="create-bill.html" class="btn" role="button">Create Bill</a>
-      <a href="products.html" class="btn" role="button">Products & Prices</a>
-      <a href="borrow-record.html" class="btn" role="button">Borrowing Records</a>
+      <a href="create-bill.html" class="btn" role="button" id="btn1">Create Bill</a>
+      <a href="products.html" class="btn" role="button" id="btn2">Products & Prices</a>
+      <a href="borrow-record.html" class="btn" role="button" id="btn3">Borrowing Records</a>
+    </div>
+
+    <div class="language-switch">
+      <button onclick="toggleLanguage()">Switch Language</button>
     </div>
   </div>
+
+  <script>
+    // Live Date & Time
+    function updateDateTime() {
+      const now = new Date();
+      const options = {
+        weekday: 'long', year: 'numeric', month: 'long',
+        day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit'
+      };
+      document.getElementById('dateTime').textContent = now.toLocaleString('en-IN', options);
+    }
+    setInterval(updateDateTime, 1000);
+    updateDateTime();
+
+    // Language Toggle
+    let isMarathi = false;
+    function toggleLanguage() {
+      isMarathi = !isMarathi;
+      if (isMarathi) {
+        document.getElementById('mainHeading').textContent = "आशिष किराणा आणि जनरल स्टोअर्स";
+        document.getElementById('proprietorInfo').textContent = "प्रोप्रायटर: नारायण अंबादास टाकळे, मोबाईल: +९१ ९८६०१७५४११";
+        document.getElementById('blessingText').textContent = "|श्री बालाजी प्रसन्न||ॐ||श्री स्वामी समर्थ|";
+        document.getElementById('btn1').textContent = "बिल तयार करा";
+        document.getElementById('btn2').textContent = "उत्पादने आणि किंमती";
+        document.getElementById('btn3').textContent = "उधारी रेकॉर्ड";
+      } else {
+        document.getElementById('mainHeading').textContent = "Ashish Kirana And General Stores";
+        document.getElementById('proprietorInfo').textContent = "Proprietor: Narayan Ambadas Takle, Mobile No: +91 9860175411";
+        document.getElementById('blessingText').textContent = "|Shree Balaji Prasanna||ॐ||Shree Swami Smarth|";
+        document.getElementById('btn1').textContent = "Create Bill";
+        document.getElementById('btn2').textContent = "Products & Prices";
+        document.getElementById('btn3').textContent = "Borrowing Records";
+      }
+    }
+  </script>
 </body>
 </html>
