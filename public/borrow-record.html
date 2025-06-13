@@ -6,100 +6,72 @@
   <title>Borrowing Records - Ashish Kirana</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to bottom right, #f7f9fc, #dbe9f4);
-      padding: 20px;
       margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #e0eafc, #cfdef3);
+    }
+
+    .dashboard {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      background-color: #4e9af1;
+      padding: 10px 0;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .dashboard button {
+      background: white;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 20px;
+      font-weight: bold;
+      color: #4e9af1;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .dashboard button:hover {
+      background-color: #357cd4;
+      color: white;
+      transform: scale(1.05);
     }
 
     .container {
-      max-width: 800px;
-      margin: auto;
-      background: #fff;
+      background-color: #ffffff;
       padding: 30px;
       border-radius: 16px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    h1 {
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
       text-align: center;
-      color: #2d2d2d;
-      font-size: 2.2rem;
-      margin-bottom: 20px;
-    }
-
-    .input-group {
-      margin-bottom: 15px;
-    }
-
-    .input-group label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 5px;
-      color: #333;
-    }
-
-    .input-group input {
-      width: 100%;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
-      box-sizing: border-box;
-    }
-
-    .btn {
-      background-color: #4e9af1;
-      color: white;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      cursor: pointer;
-      margin-top: 10px;
-      display: block;
-      width: 100%;
-    }
-
-    .btn:hover {
-      background-color: #357cd4;
-    }
-
-    table {
-      width: 100%;
-      margin-top: 25px;
-      border-collapse: collapse;
-    }
-
-    table, th, td {
-      border: 1px solid #ccc;
-    }
-
-    th, td {
-      padding: 10px;
-      text-align: center;
-    }
-
-    th {
-      background-color: #f2f2f2;
+      max-width: 800px;
+      width: 90%;
+      margin: 40px auto;
     }
 
     .blessing-text {
       font-size: 1rem;
-      text-align: center;
-      margin-bottom: 10px;
       color: #444;
+      margin: 10px 0;
+      text-align: center;
     }
 
     .blessing-text span {
       margin: 0 10px;
     }
 
+    h1 {
+      color: #2d2d2d;
+      margin-bottom: 10px;
+      font-size: 2.2rem;
+      text-align: center;
+    }
+
     .proprietor-marquee {
       overflow: hidden;
       white-space: nowrap;
       box-sizing: border-box;
-      margin: 10px 0 30px;
+      margin-bottom: 25px;
     }
 
     .proprietor-marquee h3 {
@@ -114,23 +86,89 @@
       0% { transform: translateX(0); }
       100% { transform: translateX(-100%); }
     }
+
+    .input-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    .input-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #444;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 20px;
+      background-color: #4e9af1;
+      color: #fff;
+      font-size: 1.05rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      margin-top: 10px;
+    }
+
+    .btn:hover {
+      background-color: #357cd4;
+      transform: scale(1.05);
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #ccc;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f2f2f2;
+      color: #333;
+    }
+
+    td {
+      color: #555;
+    }
   </style>
 </head>
 <body>
-  <p class="blessing-text">
-    <span>|Shree Balaji Prasanna|</span>
-    <span>|ॐ|</span>
-    <span>|Shree Swami Smarth|</span>
-  </p>
 
-  <h1>Ashish Kirana And General Stores</h1>
-  
-  <div class="proprietor-marquee">
-    <h3>Proprietor: Narayan Ambadas Takle, Mobile No: +91 9860175411</h3>
+  <div class="dashboard">
+    <button onclick="window.location.href='index.html'">🏠 Home</button>
+    <button onclick="window.location.href='create-bill.html'">🧾 Create Bill</button>
+    <button onclick="window.location.href='borrow-record.html'">📒 Borrow Record</button>
   </div>
 
   <div class="container">
-    <h1>Borrowing Records</h1>
+    <p class="blessing-text"><span>| Shree Balaji Prasanna |</span><span>| ॐ |</span><span>| Shree Swami Smarth |</span></p>
+    <h1>Ashish Kirana And General Stores</h1>
+
+    <div class="proprietor-marquee">
+      <h3>Proprietor: Narayan Ambadas Takle, Mobile No: +91 9860175411</h3>
+    </div>
+
+    <h2>Borrowing Records</h2>
 
     <div class="input-group">
       <label for="customerName">Customer Name</label>
@@ -152,7 +190,7 @@
       <input type="date" id="date"/>
     </div>
 
-    <button class="btn" onclick="addRecord()">Add Record</button>
+    <button class="btn" onclick="addRecord()">➕ Add Record</button>
 
     <table id="recordTable">
       <thead>
@@ -164,17 +202,35 @@
         </tr>
       </thead>
       <tbody>
-        <!-- Records will be added here -->
+        <!-- Records will be dynamically added -->
       </tbody>
     </table>
   </div>
 
-  <script>
-    function addRecord() {
-      const name = document.getElementById('customerName').value.trim();
-      const product = document.getElementById('product').value.trim();
-      const quantity = document.getElementById('quantity').value.trim();
-      const date = document.getElementById('date').value;
+  <!-- Firebase -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "your-api-key",
+      authDomain: "your-project-id.firebaseapp.com",
+      projectId: "your-project-id",
+      storageBucket: "your-project-id.appspot.com",
+      messagingSenderId: "your-sender-id",
+      appId: "your-app-id"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const tableBody = document.querySelector("#recordTable tbody");
+
+    window.addRecord = async function () {
+      const name = document.getElementById("customerName").value.trim();
+      const product = document.getElementById("product").value.trim();
+      const quantity = document.getElementById("quantity").value.trim();
+      const date = document.getElementById("date").value;
 
       if (!name || !product || !quantity || !date) {
         alert("Please fill in all fields.");
@@ -182,28 +238,42 @@
       }
 
       if (isNaN(quantity) || Number(quantity) <= 0) {
-        alert("Please enter a valid quantity greater than 0.");
+        alert("Enter valid quantity > 0");
         return;
       }
 
-      const table = document.querySelector('#recordTable tbody');
-      const row = document.createElement('tr');
+      try {
+        await addDoc(collection(db, "borrowRecords"), {
+          name,
+          product,
+          quantity: parseInt(quantity),
+          date
+        });
 
-      row.innerHTML = `
-        <td>${name}</td>
-        <td>${product}</td>
-        <td>${quantity}</td>
-        <td>${date}</td>
-      `;
+        document.getElementById("customerName").value = "";
+        document.getElementById("product").value = "";
+        document.getElementById("quantity").value = "";
+        document.getElementById("date").value = "";
+      } catch (error) {
+        console.error("Error adding record:", error);
+        alert("Failed to add. Try again.");
+      }
+    };
 
-      table.appendChild(row);
-
-      // Clear the input fields
-      document.getElementById('customerName').value = "";
-      document.getElementById('product').value = "";
-      document.getElementById('quantity').value = "";
-      document.getElementById('date').value = "";
-    }
+    onSnapshot(collection(db, "borrowRecords"), (snapshot) => {
+      tableBody.innerHTML = "";
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${data.name}</td>
+          <td>${data.product}</td>
+          <td>${data.quantity}</td>
+          <td>${data.date}</td>
+        `;
+        tableBody.appendChild(row);
+      });
+    });
   </script>
 </body>
 </html>

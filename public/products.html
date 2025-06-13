@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ashish Kirana - Product & Prices</title>
   <style>
     body {
@@ -11,26 +11,79 @@
       padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #e0eafc, #cfdef3);
+    }
+
+    .dashboard {
       display: flex;
       justify-content: center;
-      align-items: center;
-      height: 100vh;
+      gap: 20px;
+      background-color: #4e9af1;
+      padding: 10px 0;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .dashboard button {
+      background: white;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 20px;
+      font-weight: bold;
+      color: #4e9af1;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .dashboard button:hover {
+      background-color: #357cd4;
+      color: white;
+      transform: scale(1.05);
     }
 
     .container {
       background-color: #ffffff;
-      padding: 40px;
+      padding: 30px;
       border-radius: 16px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
       text-align: center;
-      max-width: 500px;
+      max-width: 600px;
       width: 90%;
+      margin: 40px auto;
+    }
+
+    .blessing-text {
+      font-size: 1rem;
+      color: #444;
+      margin-bottom: 8px;
+    }
+
+    .blessing-text span {
+      margin: 0 10px;
     }
 
     h1 {
       color: #2d2d2d;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       font-size: 2.2rem;
+    }
+
+    .proprietor-marquee {
+      overflow: hidden;
+      white-space: nowrap;
+      box-sizing: border-box;
+      margin-bottom: 25px;
+    }
+
+    .proprietor-marquee h3 {
+      display: inline-block;
+      padding-left: 100%;
+      animation: marquee 12s linear infinite;
+      font-size: 0.95rem;
+      color: #333;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
     }
 
     .input-group {
@@ -55,12 +108,11 @@
     }
 
     .btn {
-      text-decoration: none;
-      text-align: center;
-      padding: 15px 25px;
+      display: inline-block;
+      padding: 12px 20px;
       background-color: #4e9af1;
       color: #fff;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       border: none;
       border-radius: 10px;
       cursor: pointer;
@@ -97,50 +149,24 @@
     td {
       color: #555;
     }
-    
-    .blessing-text {
-      font-size: 1rem;
-      color: #444;
-    }
-
-    .blessing-text span{
-      margin: 10px;
-    }
-    h1 {
-      color: #2d2d2d;
-      margin-bottom: 10px;
-      font-size: 2.2rem;
-    }
-
-    .proprietor-marquee {
-      overflow: hidden;
-      white-space: nowrap;
-      box-sizing: border-box;
-      margin-bottom: 30px;
-    }
-
-    .proprietor-marquee h3 {
-      display: inline-block;
-      padding-left: 100%;
-      animation: marquee 12s linear infinite;
-      font-size: 0.95rem;
-      color: #333;
-    }
-    @keyframes marquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
-    }
   </style>
 </head>
 <body>
+
+  <div class="dashboard">
+    <button onclick="window.location.href='index.html'">🏠 Home</button>
+    <button onclick="window.location.href='create-bill.html'">🧾 Create Bill</button>
+    <button onclick="window.location.href='borrow-record.html'">📒 Borrow Record</button>
+  </div>
+
   <div class="container">
-    <p class="blessing-text">|Shree Balaji Prasanna||ॐ||Shree Swami Smarth|</p>
+    <p class="blessing-text"><span>| Shree Balaji Prasanna |</span><span>| ॐ |</span><span>| Shree Swami Smarth |</span></p>
     <h1>Ashish Kirana And General Stores</h1>
     <div class="proprietor-marquee">
       <h3>Proprietor: Narayan Ambadas Takle, Mobile No: +91 9860175411</h3>
     </div>
-  <div class="container">
-    <h1>Product & Price Record</h1>
+
+    <h2>Product & Price Record</h2>
 
     <div class="input-group">
       <label for="productName">Product Name</label>
@@ -152,7 +178,7 @@
       <input type="number" id="price" placeholder="Enter price in ₹" />
     </div>
 
-    <button class="btn" onclick="addProduct()">Add Product</button>
+    <button class="btn" onclick="addProduct()">➕ Add Product</button>
 
     <table id="productTable">
       <thead>
@@ -187,10 +213,11 @@
 
       tableBody.appendChild(newRow);
 
-      // Clear inputs after adding
+      // Clear inputs
       document.getElementById('productName').value = '';
       document.getElementById('price').value = '';
     }
   </script>
+
 </body>
 </html>

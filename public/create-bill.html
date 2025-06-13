@@ -2,29 +2,50 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ashish Kirana- Bill Genrater</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ashish Kirana - Bill Generator</title>
   <style>
     body {
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #e0eafc, #cfdef3);
+    }
+
+    .dashboard {
       display: flex;
       justify-content: center;
-      align-items: center;
-      height: 100vh;
+      gap: 20px;
+      background-color: #4e9af1;
+      padding: 10px 0;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .dashboard button {
+      background: white;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 20px;
+      font-weight: bold;
+      color: #4e9af1;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .dashboard button:hover {
+      background-color: #357cd4;
+      color: white;
+      transform: scale(1.05);
     }
 
     .container {
+      max-width: 650px;
+      margin: 40px auto;
       background-color: #ffffff;
-      padding: 40px;
+      padding: 30px;
       border-radius: 16px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
       text-align: center;
-      max-width: 600px;
-      width: 95%;
-      position: relative;
     }
 
     h1 {
@@ -37,7 +58,7 @@
       overflow: hidden;
       white-space: nowrap;
       box-sizing: border-box;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
 
     .proprietor-marquee h3 {
@@ -103,13 +124,30 @@
       background-color: #357cd4;
       transform: scale(1.05);
     }
-    @keyframes marquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
+
+    #datetime {
+      margin-bottom: 15px;
+      display: inline-block;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    tfoot td {
+      font-weight: bold;
+      font-size: 1.1rem;
+      text-align: center;
+      background-color: #f2f2f2;
     }
   </style>
 </head>
 <body>
+
+  <div class="dashboard">
+    <button onclick="window.location.href='index.html'">🏠 Home</button>
+    <button onclick="window.location.href='products.html'">🛒 Products</button>
+    <button onclick="window.location.href='borrow-record.html'">📒 Borrow Record</button>
+  </div>
+
   <div class="container">
     <h1>Ashish Kirana And General Stores</h1>
     <div class="proprietor-marquee">
@@ -146,8 +184,7 @@
       </tbody>
       <tfoot>
         <tr>
-          <td ><strong>Total</strong></td>
-          <td id="totalAmount">0</td>
+          <td colspan="4">Total: ₹ <span id="totalAmount">0.00</span></td>
         </tr>
       </tfoot>
     </table>
@@ -157,11 +194,11 @@
     </div>
 
     <div class="button-container">
-  <button onclick="validateAndPrint()">🖨️ Print Bill</button>
-  <button onclick="validateAndShare()">📤 Share Bill</button>
-  <button onclick="validateAndAddBorrowing()">➕ Add to Borrowing Record</button>
-</div>
-
+      <button onclick="validateAndPrint()">🖨️ Print Bill</button>
+      <button onclick="validateAndShare()">📤 Share Bill</button>
+      <button onclick="validateAndAddBorrowing()">➕ Add to Borrowing Record</button>
+    </div>
+  </div>
 
   <script>
     function updateDateTime() {
@@ -180,7 +217,6 @@
       const table = document.getElementById("billBody");
       const rowCount = table.rows.length + 1;
       const row = table.insertRow();
-
       row.innerHTML = `
         <td>${rowCount}</td>
         <td><input type="text" class="product-name" onkeydown="checkEnter(event)"></td>
@@ -193,43 +229,42 @@
       let total = 0;
       const rows = document.querySelectorAll('#billBody tr');
       rows.forEach(row => {
-        const qnty = row.querySelector('.qnty')?.value;
-        const rate = row.querySelector('.rate')?.value;
-        total += (parseFloat(qnty) || 0) * (parseFloat(rate) || 0);
+        const qnty = parseFloat(row.querySelector('.qnty')?.value) || 0;
+        const rate = parseFloat(row.querySelector('.rate')?.value) || 0;
+        total += qnty * rate;
       });
       document.getElementById('totalAmount').innerText = total.toFixed(2);
     }
 
-    updateDateTime();
     function isCustomerInfoValid() {
-  const customerInput = document.getElementById('customer').value.trim();
-  if (customerInput === '') {
-    alert("Please enter customer name or mobile number before proceeding.");
-    return false;
-  }
-  return true;
-}
+      const customerInput = document.getElementById('customer').value.trim();
+      if (customerInput === '') {
+        alert("Please enter customer name or mobile number before proceeding.");
+        return false;
+      }
+      return true;
+    }
 
-function validateAndPrint() {
-  if (isCustomerInfoValid()) {
-    window.print();
-  }
-}
+    function validateAndPrint() {
+      if (isCustomerInfoValid()) {
+        window.print();
+      }
+    }
 
-function validateAndShare() {
-  if (isCustomerInfoValid()) {
-    // You can later replace this with WhatsApp or email sharing logic
-    alert("Sharing the bill... (Feature coming soon)");
-  }
-}
+    function validateAndShare() {
+      if (isCustomerInfoValid()) {
+        alert("Sharing the bill... (Feature coming soon)");
+      }
+    }
 
-function validateAndAddBorrowing() {
-  if (isCustomerInfoValid()) {
-    // Later: Store to borrowing record logic
-    alert("Adding to borrowing record... (Feature coming soon)");
-  }
-}
+    function validateAndAddBorrowing() {
+      if (isCustomerInfoValid()) {
+        alert("Adding to borrowing record... (Feature coming soon)");
+      }
+    }
 
+    updateDateTime();
   </script>
+
 </body>
 </html>
