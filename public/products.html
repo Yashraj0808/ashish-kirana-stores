@@ -2,15 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ashish Kirana - Product & Prices</title>
+  <title>Product Records - Ashish Kirana</title>
   <style>
     body {
       margin: 0;
-      padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #e0eafc, #cfdef3);
+      background: linear-gradient(to bottom right, #e0eafc, #cfdef3);
     }
 
     .dashboard {
@@ -40,30 +38,29 @@
     }
 
     .container {
-      background-color: #ffffff;
-      padding: 30px;
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
       border-radius: 16px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    h2 {
+      color: #2d2d2d;
       text-align: center;
-      max-width: 600px;
-      width: 90%;
-      margin: 40px auto;
+      margin-bottom: 10px;
     }
 
     .blessing-text {
+      text-align: center;
       font-size: 1rem;
       color: #444;
-      margin-bottom: 8px;
+      margin: 10px 0;
     }
 
     .blessing-text span {
       margin: 0 10px;
-    }
-
-    h1 {
-      color: #2d2d2d;
-      margin-bottom: 10px;
-      font-size: 2.2rem;
     }
 
     .proprietor-marquee {
@@ -86,138 +83,313 @@
       100% { transform: translateX(-100%); }
     }
 
+    .category {
+      margin-bottom: 30px;
+    }
+
+    .category button.toggle-btn {
+  background: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-weight: bold;
+  color: #4e9af1;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  text-align: left;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.category button.toggle-btn:hover {
+  background-color: #357cd4;
+  color: white;
+  transform: scale(1.02);
+}
+
+
+    .category-content {
+      display: none;
+      margin-top: 15px;
+      border-top: 1px solid #ccc;
+      padding-top: 10px;
+    }
+
     .input-group {
-      margin-bottom: 15px;
-      text-align: left;
+      margin: 10px 0;
     }
 
     .input-group label {
       display: block;
       font-weight: bold;
       margin-bottom: 5px;
-      color: #444;
     }
 
     .input-group input {
       width: 100%;
       padding: 10px;
-      font-size: 1rem;
-      border: 1px solid #ccc;
       border-radius: 8px;
-      box-sizing: border-box;
+      border: 1px solid #ccc;
+      font-size: 1rem;
     }
 
     .btn {
-      display: inline-block;
-      padding: 12px 20px;
+      padding: 10px 16px;
       background-color: #4e9af1;
-      color: #fff;
-      font-size: 1.05rem;
+      color: white;
       border: none;
-      border-radius: 10px;
+      border-radius: 8px;
       cursor: pointer;
-      transition: background-color 0.3s, transform 0.2s;
       margin-top: 10px;
     }
 
     .btn:hover {
       background-color: #357cd4;
-      transform: scale(1.05);
-    }
-
-    .btn:active {
-      transform: scale(0.98);
     }
 
     table {
       width: 100%;
-      margin-top: 20px;
+      margin-top: 15px;
       border-collapse: collapse;
     }
 
     th, td {
-      padding: 12px;
+      padding: 10px;
       border-bottom: 1px solid #ccc;
       text-align: left;
     }
 
     th {
       background-color: #f2f2f2;
-      color: #333;
     }
+    .language-toggle {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+}
 
-    td {
-      color: #555;
-    }
+.language-toggle button {
+  background: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-weight: bold;
+  color: #4e9af1;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.language-toggle button:hover {
+  background-color: #357cd4;
+  color: white;
+  transform: scale(1.05);
+}
+.dashboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  background-color: #4e9af1;
+  padding: 10px;
+}
+
+.dashboard button {
+  flex: 1 1 150px;
+  text-align: center;
+}
+
   </style>
 </head>
 <body>
-
   <div class="dashboard">
-    <button onclick="window.location.href='index.html'">🏠 Home</button>
-    <button onclick="window.location.href='create-bill.html'">🧾 Create Bill</button>
-    <button onclick="window.location.href='borrow-record.html'">📒 Borrow Record</button>
-  </div>
-
+  <button onclick="window.location.href='index.html'">🏠 <span class="label-home">Home</span></button>
+  <button onclick="window.location.href='create-bill.html'">🧾 <span class="label-bill">Create Bill</span></button>
+  <button onclick="window.location.href='borrow-record.html'">📒 <span class="label-borrow">Borrow Record</span></button>
+  <button id="languageSwitchBtn" onclick="switchLanguage()">🌐 <span class="label-lang">Switch Language</span></button>
+</div>
   <div class="container">
     <p class="blessing-text"><span>| Shree Balaji Prasanna |</span><span>| ॐ |</span><span>| Shree Swami Smarth |</span></p>
-    <h1>Ashish Kirana And General Stores</h1>
+    <h2>Ashish Kirana And General Stores</h2>
+
     <div class="proprietor-marquee">
       <h3>Proprietor: Narayan Ambadas Takle, Mobile No: +91 9860175411</h3>
     </div>
 
-    <h2>Product & Price Record</h2>
-
-    <div class="input-group">
-      <label for="productName">Product Name</label>
-      <input type="text" id="productName" placeholder="Enter product name" />
-    </div>
-
-    <div class="input-group">
-      <label for="price">Price (₹)</label>
-      <input type="number" id="price" placeholder="Enter price in ₹" />
-    </div>
-
-    <button class="btn" onclick="addProduct()">➕ Add Product</button>
-
-    <table id="productTable">
-      <thead>
-        <tr>
-          <th>Product Name</th>
-          <th>Price (₹)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Product rows go here -->
-      </tbody>
-    </table>
+    <!-- Expandable Categories -->
+    <div id="categories"></div>
   </div>
-
   <script>
-    function addProduct() {
-      const name = document.getElementById('productName').value.trim();
-      const price = document.getElementById('price').value.trim();
+    const categories = [
+      "Snacks",
+      "Pulses",
+      "Drinks",
+      "Oil",
+      "Tableware",
+      "Dhep (Cow Feed)",
+      "Spices",
+      "Soaps and Washing Powder"
+    ];
+
+    const container = document.getElementById("categories");
+
+    categories.forEach(category => {
+      const section = document.createElement("div");
+      section.className = "category";
+      section.innerHTML = `
+        <button class="toggle-btn" onclick="toggleCategory(this)">${category}</button>
+        <div class="category-content">
+          <div class="input-group">
+            <label>Product Name</label>
+            <input type="text" placeholder="Enter product name" class="product-name" />
+          </div>
+          <div class="input-group">
+            <label>Price (₹)</label>
+            <input type="number" placeholder="Enter price in ₹" class="product-price" />
+          </div>
+          <button class="btn" onclick="addProduct(this)">➕ Add Product</button>
+          <table>
+            <thead><tr><th>Product</th><th>Price (₹)</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      `;
+      container.appendChild(section);
+    });
+
+    function toggleCategory(btn) {
+      const content = btn.nextElementSibling;
+      content.style.display = content.style.display === "none" || content.style.display === "" ? "block" : "none";
+    }
+
+    function addProduct(btn) {
+      const section = btn.closest(".category-content");
+      const nameInput = section.querySelector(".product-name");
+      const priceInput = section.querySelector(".product-price");
+      const name = nameInput.value.trim();
+      const price = priceInput.value.trim();
 
       if (!name || !price) {
-        alert("Please enter both product name and price.");
+        alert("Enter product name and price.");
         return;
       }
 
-      const tableBody = document.querySelector('#productTable tbody');
-      const newRow = document.createElement('tr');
+      const tbody = section.querySelector("tbody");
+      const row = document.createElement("tr");
+      row.innerHTML = `<td>${name}</td><td>₹${parseFloat(price).toFixed(2)}</td>`;
+      tbody.appendChild(row);
 
-      newRow.innerHTML = `
-        <td>${name}</td>
-        <td>₹${parseFloat(price).toFixed(2)}</td>
-      `;
-
-      tableBody.appendChild(newRow);
-
-      // Clear inputs
-      document.getElementById('productName').value = '';
-      document.getElementById('price').value = '';
+      nameInput.value = "";
+      priceInput.value = "";
     }
   </script>
+  <script>
+  let isMarathi = false;
 
+  const labels = {
+    en: {
+      blessing: '| Shree Balaji Prasanna | | ॐ | | Shree Swami Smarth |',
+      title: 'Ashish Kirana And General Stores',
+      subtitle: 'Product & Price Record',
+      proprietor: 'Proprietor: Narayan Ambadas Takle, Mobile No: +91 9860175411',
+      categories: [
+        "Snacks", "Pulses", "Drinks", "Oil", "Tableware",
+        "Dhep (Cow Feed)", "Spices", "Soaps and Washing Powder"
+      ],
+      name: "Product Name",
+      price: "Price (₹)",
+      addBtn: "➕ Add Product",
+      colProduct: "Product Name",
+      colPrice: "Price (₹)"
+    },
+    mr: {
+      blessing: '| श्री बालाजी प्रसन्न | | ॐ | | श्री स्वामी समर्थ |',
+      title: 'आशिष किराणा आणि जनरल स्टोअर्स',
+      subtitle: 'उत्पादन व किंमत रेकॉर्ड',
+      proprietor: 'मालक: नारायण अंबादास टकले, मोबाईल नं: +९१ ९८६०१७५४११',
+      categories: [
+        "स्नॅक्स", "डाळी", "पेय", "तेल", "भांडी",
+        "ढेप (गाय चारा)", "मसाले", "साबण व धुण्याचा पावडर"
+      ],
+      name: "उत्पादनाचे नाव",
+      price: "किंमत (₹)",
+      addBtn: "➕ उत्पादन जोडा",
+      colProduct: "उत्पादनाचे नाव",
+      colPrice: "किंमत (₹)"
+    }
+  };
+
+  function renderCategories() {
+    const lang = isMarathi ? 'mr' : 'en';
+    const container = document.getElementById("categories");
+    container.innerHTML = ""; // clear all categories
+
+    labels[lang].categories.forEach((category, index) => {
+      const section = document.createElement("div");
+      section.className = "category";
+      section.innerHTML = `
+        <button class="toggle-btn" onclick="toggleCategory(this)">${category}</button>
+        <div class="category-content">
+          <div class="input-group">
+            <label>${labels[lang].name}</label>
+            <input type="text" placeholder="${labels[lang].name}" class="product-name" />
+          </div>
+          <div class="input-group">
+            <label>${labels[lang].price}</label>
+            <input type="number" placeholder="${labels[lang].price}" class="product-price" />
+          </div>
+          <button class="btn" onclick="addProduct(this)">${labels[lang].addBtn}</button>
+          <table>
+            <thead>
+              <tr><th>${labels[lang].colProduct}</th><th>${labels[lang].colPrice}</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      `;
+      container.appendChild(section);
+    });
+  }
+
+  function toggleCategory(btn) {
+    const content = btn.nextElementSibling;
+    content.style.display = content.style.display === "none" || content.style.display === "" ? "block" : "none";
+  }
+
+  function addProduct(btn) {
+    const section = btn.closest(".category-content");
+    const nameInput = section.querySelector(".product-name");
+    const priceInput = section.querySelector(".product-price");
+    const name = nameInput.value.trim();
+    const price = priceInput.value.trim();
+
+    if (!name || !price) {
+      alert(isMarathi ? "कृपया उत्पादनाचे नाव आणि किंमत भरा." : "Enter product name and price.");
+      return;
+    }
+
+    const tbody = section.querySelector("tbody");
+    const row = document.createElement("tr");
+    row.innerHTML = `<td>${name}</td><td>₹${parseFloat(price).toFixed(2)}</td>`;
+    tbody.appendChild(row);
+
+    nameInput.value = "";
+    priceInput.value = "";
+  }
+
+  function switchLanguage() {
+    isMarathi = !isMarathi;
+    const lang = isMarathi ? 'mr' : 'en';
+
+    document.querySelector(".blessing-text").innerHTML = labels[lang].blessing;
+    document.querySelector("h2").textContent = labels[lang].title;
+    document.querySelector(".proprietor-marquee h3").textContent = labels[lang].proprietor;
+
+    renderCategories();
+  }
+
+  // initial render
+  renderCategories();
+</script>
 </body>
 </html>
