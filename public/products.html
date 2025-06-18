@@ -200,6 +200,10 @@
 }
 
   </style>
+  <!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js"></script>
+<script type="module" src="firebase.js"></script>
 </head>
 <body>
   <div class="dashboard">
@@ -390,6 +394,54 @@
 
   // initial render
   renderCategories();
+  async function addProduct(btn) {
+  const section = btn.closest(".category-content");
+  const category = btn.closest(".category").querySelector(".toggle-btn").textContent;
+  const nameInput = section.querySelector(".product-name");
+  const priceInput = section.querySelector(".product-price");
+  const name = nameInput.value.trim();
+  const price = priceInput.value.trim();
+
+  if (!name || !price) {
+    alert(isMarathi ? "कृपया उत्पादनाचे नाव आणि किंमत भरा." : "Enter product name and price.");
+    return;
+  }
+
+  const product = {
+    name,
+    price: parseFloat(price),
+    timestamp: new Date().toISOString()
+  };
+
+  try {
+    const { addDoc, collection } = window.firestoreFns;
+    await addDoc(collection(window.db, category), product);
+    renderProductRow(section.querySelector("tbody"), product);
+  } catch (e) {
+    console.error("Error saving product:", e);
+  }
+
+  nameInput.value = "";
+  priceInput.value = "";
+}
+function renderProductRow(tbody, product) {
+  const row = document.createElement("tr");
+  row.innerHTML = `<td>${product.name}</td><td>₹${parseFloat(product.price).toFixed(2)}</td>`;
+  tbody.appendChild(row);
+}
+const section = document.createElement("div");
+section.className = "category";
+// ...same as before
+
+container.appendChild(section);
+
+// Fetch saved products from Firebase for this category
+const tbody = section.querySelector("tbody");
+const { getDocs, collection } = window.firestoreFns;
+getDocs(collection(window.db, category)).then(snapshot => {
+  snapshot.forEach(doc => renderProductRow(tbody, doc.data()));
+});
+
 </script>
 </body>
 </html>
